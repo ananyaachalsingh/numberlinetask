@@ -16,9 +16,7 @@
 
 const jsPsych = initJsPsych({
   on_finish: function () {
-    // Local testing backup.
-    // Pavlovia saving is handled by the Pavlovia setup used by
-    // the project. This download is useful for local testing.
+    
     jsPsych.data.get().localSave(
       "csv",
       "number_line_estimation_data.csv"
@@ -99,7 +97,7 @@ const target_numbers = [
 ];
 
 
-// Safety check: the paper has 43 unique test stimuli.
+
 if (target_numbers.length !== 43) {
   throw new Error(
     "Stimulus list error: expected 43 unique experimental stimuli."
