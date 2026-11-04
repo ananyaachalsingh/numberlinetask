@@ -16,10 +16,14 @@
 
 const jsPsych = initJsPsych({
   on_finish: function () {
-    
+
+    const safeParticipantId = String(participant_id || "participant")
+      .trim()
+      .replace(/[^a-zA-Z0-9_-]+/g, "_");
+
     jsPsych.data.get().localSave(
       "csv",
-      "number_line_estimation_data.csv"
+      `number_line_estimation_${safeParticipantId}.csv`
     );
   }
 });
@@ -730,11 +734,15 @@ const end_screen = {
       <h2>Thank You!</h2>
 
       <p>
-        You have completed the experiment.
+        Thank you for completing the survey!
       </p>
 
       <p>
-        Thank you for participating.
+        Please click <strong>Finish</strong> to download your CSV file.
+      </p>
+
+      <p>
+        Once downloaded, please email the CSV file to us.
       </p>
 
     </div>
@@ -742,7 +750,6 @@ const end_screen = {
 
   choices: ["Finish"]
 };
-
 
 // =======================================================
 // 16. BUILD COMPLETE TIMELINE
